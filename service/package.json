@@ -1,0 +1,11 @@
+{
+  "name": "codingsans-cognito-react-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:latotty/codingsans-cognito-react.git",
+    "type": "git"
+  },
+  "author": "LaTotty <latotty@codingsans.com>",
+  "license": "MIT"
+}
