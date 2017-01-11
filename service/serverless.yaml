@@ -1,0 +1,15 @@
+service: codingsans-cognito-react
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: eu-west-1
+
+plugins:
+  - cf-cognito
+
+resources:
+  Resources:
+    TestBucket:
+      Type: AWS::S3::Bucket
