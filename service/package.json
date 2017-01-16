@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "sls": "sls"
+    "sls": "sls",
+    "lint": "npm -s run lint-plugin",
+    "lint-plugin": "eslint --no-ignore ./.serverless_plugins/**/*.js"
   },
   "repository": {
     "url": "git@github.com:latotty/codingsans-cognito-react.git",
@@ -12,6 +14,15 @@
   "author": "LaTotty <latotty@codingsans.com>",
   "license": "MIT",
   "devDependencies": {
-    "serverless": "^1.5.0"
+    "bluebird": "^3.4.7",
+    "eslint": "2.7",
+    "eslint-config-codingsans": "^2.1.0",
+    "glob": "^7.1.1",
+    "rimraf": "^2.5.4",
+    "serverless": "^1.5.0",
+    "yazl": "^2.4.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
   }
 }
