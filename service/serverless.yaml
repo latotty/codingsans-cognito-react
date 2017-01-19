@@ -5,6 +5,20 @@ provider:
   runtime: nodejs4.3
   stage: dev
   region: eu-west-1
+  iamRoleStatements:
+    -  Effect: "Allow"
+       Action:
+         - "s3:ListBucket"
+       Resource:
+         Fn::Join:
+           - ""
+           - - "arn:aws:s3:::"
+             - Ref: ServerlessDeploymentBucket
+    -  Effect: "Allow"
+       Action:
+         - "iot:*"
+       Resource:
+         - "*"
 
 plugins:
   - cf-cognito
@@ -13,3 +27,20 @@ resources:
   Resources:
     TestBucket:
       Type: AWS::S3::Bucket
+
+functions:
+  globalChatIn:
+    handler: handler.globalChatIn
+    events:
+      - iot:
+          sql: "SELECT * FROM 'globalChatIn'"
+  signUrl:
+    handler: handler.getSignUrl
+    environment:
+      ENDPOINT: ${env:ENDPOINT, file(.env.${opt:stage}.yaml):ENDPOINT, file(.env.yaml):ENDPOINT}
+      REGION: ${env:REGION, file(.env.${opt:stage}.yaml):REGION, file(.env.yaml):REGION}
+    events:
+      - http:
+          path: signUrl
+          method: get
+          cors: true
