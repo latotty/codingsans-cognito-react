@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 
 const webpack = require('webpack');
@@ -40,6 +41,9 @@ const webpackConfig = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: vendorFileName,
+    }),
+    new webpack.DefinePlugin({
+      LAMBDA_API: JSON.stringify(process.env.LAMBDA_API),
     }),
   ],
 };
